@@ -257,6 +257,17 @@ NSDate *AutoFormatDate(NSString *dateString) {
         return;
     }
     
+    // Only show starred and forked for github, issue tracking is better to be notified by gmail.
+    if ([[self.URL absoluteString] containsString:@"https://github.com/"]) {
+        NSMutableArray *tmpItems = [[NSMutableArray alloc] init];
+        for (FeedItem *item in newItems) {
+            if ([item.title containsString:@" starred "] || [item.title containsString:@" forked "]) {
+                [tmpItems addObject:item];
+            }
+        }
+        newItems = tmpItems;
+    }
+    
     // if we have existing items, merge the new ones in
     if (self.items) {
         NSMutableArray *merged = [NSMutableArray array];
