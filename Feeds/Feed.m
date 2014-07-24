@@ -261,7 +261,7 @@ NSDate *AutoFormatDate(NSString *dateString) {
     if ([[self.URL absoluteString] containsString:@"https://github.com/"]) {
         NSMutableArray *tmpItems = [[NSMutableArray alloc] init];
         for (FeedItem *item in newItems) {
-            if ([item.title containsString:@" starred "] || [item.title containsString:@" forked "]) {
+            if ([item.title containsString:@" starred "] || [item.title containsString:@" forked "] || [item.title containsString:@" pushed "] || [item.title containsString:@" created "]) {
                 [tmpItems addObject:item];
             }
         }
